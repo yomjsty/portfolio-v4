@@ -1,103 +1,174 @@
-import Image from "next/image";
+"use client";
+
+import { CopyIcon, DownloadIcon } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaThreads, FaXTwitter } from "react-icons/fa6";
+import { FiGithub } from "react-icons/fi";
+import { ProjectCard } from "@/components/project-card";
+import { Stack } from "@/components/stack";
+import { TitleHeader } from "@/components/title-header";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { projects } from "@/lib/project-data";
+
+const socials = [
+    {
+        tooltip: "Instagram",
+        icon: FaInstagram,
+        url: "https://www.instagram.com/akbarknawan",
+    },
+    {
+        tooltip: "GitHub",
+        icon: FiGithub,
+        url: "https://github.com/yomjsty",
+    },
+    {
+        tooltip: "LinkedIn",
+        icon: FaLinkedinIn,
+        url: "https://www.linkedin.com/in/akbarknawan",
+    },
+    {
+        tooltip: "Threads",
+        icon: FaThreads,
+        url: "https://www.threads.com/@akbarknawan",
+    },
+    {
+        tooltip: "X (Formerly Twitter)",
+        icon: FaXTwitter,
+        url: "https://x.com/akbarknawan",
+    },
+];
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    const [isCopied, setIsCopied] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    const handleCopyEmail = () => {
+        navigator.clipboard.writeText("akbarknawan@gmail.com");
+        setIsCopied(true);
+        setTimeout(() => {
+            setIsCopied(false);
+        }, 2000);
+    };
+
+    return (
+        <div className="max-w-3xl mx-auto w-full py-2 lg:py-12 px-4 md:px-6">
+            <div className="flex justify-between items-end">
+                <div className="flex items-center gap-2">
+                    <Avatar>
+                        <AvatarImage
+                            src="/favicon.png"
+                            className="dark:invert"
+                        />
+                        <AvatarFallback>AK</AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col">
+                        <span className="font-semibold">Akbar Krishnawan</span>
+                        <p className="-mt-1 text-muted-foreground">
+                            @akbarknawan
+                        </p>
+                    </div>
+                </div>
+                <div className="-mt-1 text-muted-foreground">
+                    Portfolio ©2025
+                </div>
+            </div>
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold font-mono pt-10">
+                Full Stack Developer
+            </h1>
+            <Separator className="my-10" />
+            <div className="space-y-8">
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                    <div className="md:w-3/4">
+                        <p className="text-lg text-muted-foreground">
+                            Full-stack{" "}
+                            <span className="font-semibold text-foreground">
+                                Next.js
+                            </span>{" "}
+                            developer focused on building fast, elegant web
+                            experiences. Open to exploring{" "}
+                            <span className="font-semibold text-foreground">
+                                new
+                            </span>{" "}
+                            frameworks and ideas that shape the future of the
+                            web.
+                        </p>
+                    </div>
+                    <div className="md:w-1/4">
+                        <div className="flex gap-4 justify-end">
+                            {socials.map((social) => (
+                                <Link
+                                    key={social.url}
+                                    href={social.url}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <Tooltip>
+                                        <TooltipTrigger className="cursor-pointer">
+                                            <social.icon className="h-[18px] w-[18px] hover:text-destructive" />
+                                        </TooltipTrigger>
+                                        <TooltipContent className="bg-destructive">
+                                            <p>{social.tooltip}</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <div className="flex flex-col md:flex-row gap-4">
+                    <Button
+                        size="lg"
+                        className="grow"
+                        onClick={() => {
+                            window.open("/cv.pdf", "_blank");
+                        }}
+                    >
+                        <DownloadIcon />
+                        Download CV
+                    </Button>
+                    <Button
+                        size="lg"
+                        className="grow"
+                        variant="outline"
+                        onClick={handleCopyEmail}
+                    >
+                        <CopyIcon /> {isCopied ? "Copied" : "Copy Email"}
+                    </Button>
+                </div>
+            </div>
+            <Separator className="my-10" />
+            <TitleHeader number="01" title="Latest Projects" />
+            <Separator className="my-10" />
+            <div className="space-y-14">
+                {projects
+                    .slice(-2)
+                    .reverse()
+                    .map((project) => (
+                        <ProjectCard key={project.name} project={project} />
+                    ))}
+                <Link
+                    href="/projects"
+                    className={buttonVariants({
+                        variant: "outline",
+                        size: "lg",
+                        className: "w-full -mt-10",
+                    })}
+                >
+                    View All Projects
+                </Link>
+            </div>
+            <Separator className="my-10" />
+            <TitleHeader number="02" title="Tech Stack" />
+            <Separator className="my-10" />
+            <Stack />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }
