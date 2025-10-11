@@ -66,6 +66,7 @@ export default function Home() {
                         <AvatarImage
                             src="/favicon.png"
                             className="dark:invert"
+                            alt="Akbar Krishnawan"
                         />
                         <AvatarFallback>AK</AvatarFallback>
                     </Avatar>

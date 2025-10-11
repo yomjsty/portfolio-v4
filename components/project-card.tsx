@@ -52,8 +52,9 @@ export function ProjectCard({ project }: { project: Project }) {
                 src={`/project/preview/${project.image}`}
                 alt={project.name}
                 className="aspect-video object-cover rounded-lg mb-4"
-                width={1000}
-                height={1000}
+                width={866}
+                height={428}
+                priority
             />
             <div className="flex flex-wrap gap-2 text-sm">
                 {project.allStack.map((stack) => (
