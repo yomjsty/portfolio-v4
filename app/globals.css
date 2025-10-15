@@ -177,3 +177,49 @@
     animation: none;
     mix-blend-mode: normal;
 }
+
+/* Scrollbar umum */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Hilangkan panah atas/bawah scrollbar */
+::-webkit-scrollbar-button:single-button {
+  display: none;
+  background: transparent;
+  height: 0;
+  width: 0;
+}
+
+/* Pastikan panah dihilangkan sepenuhnya */
+::-webkit-scrollbar-button {
+  display: none;
+  background: transparent;
+  height: 0;
+  width: 0;
+}
+
+/* Track (latar belakang scrollbar) */
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+/* Thumb (bagian yang digeser) */
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted-foreground));
+  border-radius: 9999px;
+  border: 2px solid transparent; /* opsional, biar smooth */
+  background-clip: content-box;
+}
+
+/* Hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--primary));
+}
+
+/* Untuk Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground)) hsl(var(--background));
+}

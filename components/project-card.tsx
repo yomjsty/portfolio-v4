@@ -8,7 +8,11 @@ import { Button, buttonVariants } from "./ui/button";
 
 export function ProjectCard({ project }: { project: Project }) {
     return (
-        <div className="font-mono space-y-3">
+        <div
+            className="font-mono space-y-3"
+            key={project.name}
+            id={project.name}
+        >
             <div className="flex justify-between items-center">
                 <div>
                     <span className="text-destructive text-sm font-medium">

@@ -53,7 +53,7 @@ export default function RootLayout({
                     <SidebarProvider>
                         <AppSidebar />
                         <SidebarInset className="">
-                            <header className="flex h-16 shrink-0 items-center gap-2 sticky top-0 bg-background rounded-t-xl border-b z-10 mb-2">
+                            <header className="flex h-16 shrink-0 items-center gap-2 sticky top-0 bg-background rounded-t-xl border-b z-10">
                                 <div className="flex items-center gap-2 px-[22px]">
                                     <SidebarTrigger className="-ml-1" />
                                     <Separator
@@ -63,10 +63,8 @@ export default function RootLayout({
                                     <AnimatedThemeToggler className="cursor-pointer" />
                                 </div>
                             </header>
-                            <ScrollArea className="md:max-h-[calc(100svh-11rem)] md:overflow-y-auto md:mr-0.5">
-                                {children}
-                            </ScrollArea>
-                            <footer className="flex items-center justify-end h-16 shrink-0 gap-2 sticky bottom-0 bg-background rounded-b-xl border-t z-10 mt-2 font-mono text-muted-foreground text-sm">
+                            {children}
+                            <footer className="flex items-center justify-end h-16 shrink-0 gap-2 sticky bottom-0 bg-background rounded-b-xl border-t z-10 font-mono text-muted-foreground text-sm">
                                 <div className="max-w-3xl mx-auto px-4 md:px-6">
                                     Built with{" "}
                                     <Link
