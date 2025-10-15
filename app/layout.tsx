@@ -5,7 +5,6 @@ import Link from "next/link";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import {
     SidebarInset,
@@ -65,16 +64,29 @@ export default function RootLayout({
                             </header>
                             {children}
                             <footer className="flex items-center justify-end h-16 shrink-0 gap-2 sticky bottom-0 bg-background rounded-b-xl border-t z-10 font-mono text-muted-foreground text-sm">
-                                <div className="max-w-3xl mx-auto px-4 md:px-6">
-                                    Built with{" "}
-                                    <Link
-                                        href="https://nextjs.org/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-foreground hover:underline underline-offset-4"
-                                    >
-                                        Next.js
-                                    </Link>
+                                <div className="flex h-5 items-center text-sm gap-2 max-w-3xl mx-auto px-4 md:px-6">
+                                    <div>
+                                        <Link
+                                            href="https://old-akbarknawan.vercel.app"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-foreground hover:underline underline-offset-4"
+                                        >
+                                            Old Portfolio
+                                        </Link>
+                                    </div>
+                                    <Separator orientation="vertical" />
+                                    <div>
+                                        Built with{" "}
+                                        <Link
+                                            href="https://nextjs.org/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-foreground hover:underline underline-offset-4"
+                                        >
+                                            Next.js
+                                        </Link>
+                                    </div>
                                 </div>
                             </footer>
                         </SidebarInset>

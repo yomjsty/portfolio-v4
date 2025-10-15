@@ -11,7 +11,6 @@ import { projects } from "@/lib/project-data";
 
 export default function Projects() {
     const parentRef = useRef<HTMLDivElement | null>(null);
-    const projectsReverse = projects.reverse();
 
     return (
         <div className="md:flex md:grow">
@@ -23,7 +22,7 @@ export default function Projects() {
                     <TitleHeader number="00" title="All Projects" />
                     <Separator className="my-10" />
                     <div className="space-y-14">
-                        {projectsReverse.map((project) => (
+                        {projects.map((project) => (
                             <ProjectCard key={project.name} project={project} />
                         ))}
                     </div>
@@ -37,7 +36,7 @@ export default function Projects() {
                     className="flex flex-col gap-2.5 justify-between h-full p-4"
                 >
                     <div>Go to project: </div>
-                    {projectsReverse.map((project) => (
+                    {projects.map((project) => (
                         <Button
                             key={project.name}
                             variant="outline"

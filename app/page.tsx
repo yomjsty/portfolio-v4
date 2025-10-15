@@ -179,15 +179,12 @@ export default function Home() {
                         <TitleHeader number="01" title="Latest Projects" />
                         <Separator className="my-10" />
                         <div className="space-y-14">
-                            {projects
-                                .slice(-2)
-                                .reverse()
-                                .map((project) => (
-                                    <ProjectCard
-                                        key={project.name}
-                                        project={project}
-                                    />
-                                ))}
+                            {projects.slice(0, 2).map((project) => (
+                                <ProjectCard
+                                    key={project.name}
+                                    project={project}
+                                />
+                            ))}
                             <Link
                                 href="/projects"
                                 className={buttonVariants({
